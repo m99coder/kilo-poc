@@ -11,11 +11,7 @@ What’s possible with that?
 
 ## Setup
 
-1. Install WireGuard (see <https://www.wireguard.com/install/>)
-2. Open WireGuard port (see <https://github.com/squat/kubeconeu2019/blob/master/firewall.tf>)
-3. Specify topology (cross-cloud communication gets encrypted, internal stays untouched)
-4. Ensure nodes have public IP (at least one node in each location)
-5. Install Kilo
+> [Resource](https://github.com/squat/kilo/issues/11#issuecomment-521211498)
 
 ```shell
 # Node 1
@@ -86,8 +82,8 @@ terraform destroy
 ## Open tasks
 
 * [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
-* [ ] Install Wireguard on all nodes ([docs](https://www.wireguard.com/install/))
-* [ ] Open port UDP 51820 for Wireguard
+* [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
+* [ ] Open port UDP 51820 for WireGuard
 * [ ] Open port TCP 6443 for K3s
 * [ ] Install K3s on all nodes ([docs](https://docs.k3s.io/quick-start))
 * [ ] Specify topology (annotating location and region)
