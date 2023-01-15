@@ -1,6 +1,6 @@
 # Proof-of-Concept: Kilo
 
-> A Proof-of-concept for using K3s to create a Kubernetes cluster deployed on nodes from different public cloud providers (AWS, GCP, Azure, …) utilizing [Kilo](https://kilo.squat.ai/)
+> A Proof-of-concept for using K3s to create a Kubernetes cluster deployed on nodes from different public cloud providers (AWS, GCP, Azure) utilizing [Kilo](https://kilo.squat.ai/)
 
 ## Introduction
 
