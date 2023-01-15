@@ -604,4 +604,7 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/9b6ad402-
 
 # get all locations
 az account list-locations -o table # japaneast (Tokyo)
+
+# get all Debian 11 images
+az vm image list --all --publisher Debian --offer debian-11
 ```

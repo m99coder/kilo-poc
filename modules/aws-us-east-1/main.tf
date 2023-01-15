@@ -23,7 +23,8 @@ resource "aws_key_pair" "aws_key" {
 }
 
 resource "aws_instance" "node" {
-  ami                         = "ami-0b5eea76982371e91"
+  # ami                         = "ami-0b5eea76982371e91" # Amazon Linux 2
+  ami                         = "ami-052465340e6b59fc0" # Debian 11
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   key_name                    = "aws-key"

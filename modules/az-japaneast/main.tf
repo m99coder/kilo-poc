@@ -78,10 +78,10 @@ resource "azurerm_linux_virtual_machine" "node" {
   }
 
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+    publisher = "Debian"
+    offer     = "debian-11"
+    sku       = "11"
+    version   = "0.20221219.1234"
   }
 
   computer_name                   = "az-japaneast-node"

@@ -77,9 +77,7 @@ terraform destroy
 
 ## Open tasks
 
-* [ ] Ensure all nodes use Debian 11
-  * Update AWS AMIs
-  * Switch from Ubuntu to Debian for Azure VMs
+* [x] ~~Ensure all nodes use Debian 11~~
 * [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
 * [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
 * [ ] Open port UDP 51820 for WireGuard

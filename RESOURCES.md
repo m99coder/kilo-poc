@@ -8,12 +8,15 @@
 * <https://aws.amazon.com/ec2/instance-types/t3/>
 * <https://aws.amazon.com/amazon-linux-ami/>
 * <http://ec2-downloads.s3.amazonaws.com/AmazonLinuxAMIUserGuide.pdf>
+* <https://wiki.debian.org/Cloud/AmazonEC2Image/Bullseye>
 * <https://cloud-images.ubuntu.com/locator/ec2/>
+* <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html>
 * <https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc-components>
 
 ## Azure
 
 * <https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform>
+* <https://az-vm-image.info/>
 
 ## Terraform
 
