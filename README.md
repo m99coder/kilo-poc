@@ -13,6 +13,9 @@ What’s possible with that?
 
 > [Source](https://github.com/squat/kilo/issues/11#issuecomment-521211498)
 
+<details>
+  <summary>Thread from issue 11</summary>
+
 ```shell
 # Node 1
 # Boot the node in AWS. Make sure to open ports TCP 6443 and UDP 51820.
@@ -55,6 +58,35 @@ sudo kubectl apply -f https://raw.githubusercontent.com/squat/kilo/master/manife
 sudo kubectl get pods -o wide --all-namespaces
 ```
 
+</details>
+
+Proposed steps
+
+```shell
+# wireguard
+apt install wireguard
+
+# get public IP
+dig +short myip.opendns.com @resolver1.opendns.com
+# or `curl http://checkip.amazonaws.com`
+
+# k3s (on primary node)
+curl -sfL https://get.k3s.io | sh -s - --node-ip=$PUBLIC_IP
+# on Azure `--node-external-ip` is required
+kubectl get nodes -o wide
+kubectl annotate node $NODE_NAME kilo.squat.ai/location="aws"
+cat /var/lib/rancher/k3s/server/node-token
+
+# k3s (on secondary nodes, joining the primary node)
+curl -sfL https://get.k3s.io | K3S_URL=https://$PUBLIC_IP:6443 K3S_TOKEN=$TOKEN sh -
+kubectl get nodes -o wide
+kubectl annotate node $NODE_NAME kilo.squat.ai/location="gcp"
+
+# kilo
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/master/manifests/kilo-k3s-flannel.yaml
+kubectl get pods -o wide --all-namespaces
+```
+
 ## Run
 
 ```shell
@@ -78,10 +110,10 @@ terraform destroy
 ## Open tasks
 
 * [x] ~~Ensure all nodes use Debian 11~~
-* [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
-* [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
 * [ ] Open port UDP 51820 for WireGuard
 * [ ] Open port TCP 6443 for K3s (if required)
+* [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
 * [ ] Install K3s on all nodes ([docs](https://docs.k3s.io/quick-start))
 * [ ] Specify topology (annotating location and region)
 * [ ] Deploy Kilo on all nodes
+* [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
