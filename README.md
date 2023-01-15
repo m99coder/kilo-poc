@@ -11,7 +11,7 @@ What’s possible with that?
 
 ## Setup
 
-> [Resource](https://github.com/squat/kilo/issues/11#issuecomment-521211498)
+> [Source](https://github.com/squat/kilo/issues/11#issuecomment-521211498)
 
 ```shell
 # Node 1
