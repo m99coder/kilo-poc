@@ -59,16 +59,12 @@ sudo kubectl get pods -o wide --all-namespaces
 
 ```shell
 # create RSA key
-ssh-keygen -b 4096 -t rsa -f cloud-key
+ssh-keygen -b 4096 -t rsa -f ~/.ssh/cloud-key
 
-# init infrastructure
+# init, plan, and apply infrastructure
+# use `-target=module.gcp_us_central1` to target specific modules
 terraform init
-
-# plan infrastructure
 terraform plan
-
-# create infrastructure
-# can be used with `-target=module.gcp_us_central1` to target specific modules
 terraform apply
 
 # show resources and details
