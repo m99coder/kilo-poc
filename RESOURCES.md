@@ -25,6 +25,10 @@
 * <https://abiydv.github.io/posts/terraform-multiaccount-multiregion/>
 * <https://stackoverflow.com/a/74870206/17550686>
 
+## Wireguard
+
+* <https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-debian-11>
+
 ## Multi-Cloud VPN
 
 * <https://kilo.squat.ai/>
@@ -39,6 +43,7 @@
 ## Kubernetes Distribution
 
 * <https://k3s.io/>
+* <https://github.com/squat/kilo/issues/11#issuecomment-521211498>
 * <https://johansiebens.dev/posts/2020/11/provision-a-multi-region-k3s-cluster-on-google-cloud-with-terraform/>
 * <https://typhoon.psdn.io/>
 * <https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity>

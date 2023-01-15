@@ -85,7 +85,9 @@ terraform destroy
 
 ## Open tasks
 
-* [ ] Open ports TCP 6443 and UDP 51820 for Wireguard
-* [ ] Install k3s on all nodes
+* [ ] Install Wireguard on all nodes ([docs](https://www.wireguard.com/install/))
+* [ ] Open port UDP 51820 for Wireguard
+* [ ] Open port TCP 6443 for K3s
+* [ ] Install k3s on all nodes ([docs](https://docs.k3s.io/quick-start))
+* [ ] Specify topology (annotating location and region)
 * [ ] Deploy Kilo on all nodes
-* [ ] Generate topology graph
