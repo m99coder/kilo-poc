@@ -83,7 +83,7 @@ terraform destroy
 * [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
 * [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
 * [ ] Open port UDP 51820 for WireGuard
-* [ ] Open port TCP 6443 for K3s
+* [ ] Open port TCP 6443 for K3s (if required)
 * [ ] Install K3s on all nodes ([docs](https://docs.k3s.io/quick-start))
 * [ ] Specify topology (annotating location and region)
 * [ ] Deploy Kilo on all nodes
