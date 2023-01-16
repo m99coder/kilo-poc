@@ -60,31 +60,39 @@ sudo kubectl get pods -o wide --all-namespaces
 
 </details>
 
-Proposed steps
+### Primary node
 
 ```shell
-# wireguard
+# elevate to root user
+sudo su
+
+# install wireguard
+apt update
 apt install wireguard
+#sudo apt install wireguard wireguard-tools linux-headers-$(uname -r)
 
-# get public IP
-dig +short myip.opendns.com @resolver1.opendns.com
-# or `curl http://checkip.amazonaws.com`
-
-# k3s (on primary node)
-curl -sfL https://get.k3s.io | sh -s - --node-ip=$PUBLIC_IP
-# on Azure `--node-external-ip` is required
+# k3s
+export PUBLIC_IP=$(curl -s ifconfig.me) && echo $PUBLIC_IP
+curl -sfL https://get.k3s.io | sh -s - --node-ip=$PUBLIC_IP --node-external-ip=$PUBLIC_IP
 kubectl get nodes -o wide
-kubectl annotate node $NODE_NAME kilo.squat.ai/location="aws"
+
+# annotate location
+export NODE_NAME=$(kubectl get nodes -o name) && echo $NODE_NAME
+kubectl annotate $NODE_NAME kilo.squat.ai/location="aws"
+
+# get join token
 cat /var/lib/rancher/k3s/server/node-token
 
-# k3s (on secondary nodes, joining the primary node)
-curl -sfL https://get.k3s.io | K3S_URL=https://$PUBLIC_IP:6443 K3S_TOKEN=$TOKEN sh -
-kubectl get nodes -o wide
-kubectl annotate node $NODE_NAME kilo.squat.ai/location="gcp"
-
 # kilo
-kubectl apply -f https://raw.githubusercontent.com/squat/kilo/master/manifests/kilo-k3s-flannel.yaml
-kubectl get pods -o wide --all-namespaces
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kilo-k3s.yaml
+```
+
+### Secondary nodes
+
+```shell
+# k3s
+curl -sfL https://get.k3s.io | K3S_URL=https://$PUBLIC_IP:6443 K3S_TOKEN=$TOKEN sh -
 ```
 
 ## Run
@@ -110,7 +118,7 @@ terraform destroy
 ## Open tasks
 
 * [x] ~~Ensure all nodes use Debian 11~~
-* [ ] Open port UDP 51820 for WireGuard
+* [x] ~~Open port UDP 51820 for WireGuard~~
 * [ ] Open port TCP 6443 for K3s (if required)
 * [ ] Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))
 * [ ] Install K3s on all nodes ([docs](https://docs.k3s.io/quick-start))

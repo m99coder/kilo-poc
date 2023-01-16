@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_security_group" "ssh" {
+resource "aws_security_group" "ssh_wireguard" {
   egress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 0
@@ -14,6 +14,12 @@ resource "aws_security_group" "ssh" {
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
+  }
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 51820
+    protocol    = "udp"
+    to_port     = 51820
   }
 }
 
@@ -28,5 +34,5 @@ resource "aws_instance" "node" {
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   key_name                    = "aws-key"
-  vpc_security_group_ids      = [aws_security_group.ssh.id]
+  vpc_security_group_ids      = [aws_security_group.ssh_wireguard.id]
 }
