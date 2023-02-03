@@ -3,19 +3,21 @@ provider "aws" {
 }
 
 resource "aws_security_group" "ssh_wireguard" {
-  egress {
-    cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-  }
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
   }
+
   ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 51820
+    protocol    = "udp"
+    to_port     = 51820
+  }
+
+  egress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 51820
     protocol    = "udp"
@@ -35,4 +37,8 @@ resource "aws_instance" "node" {
   instance_type               = "t2.micro"
   key_name                    = "aws-key"
   vpc_security_group_ids      = [aws_security_group.ssh_wireguard.id]
+
+  tags = {
+    Name = "aws-us-west-2-node"
+  }
 }

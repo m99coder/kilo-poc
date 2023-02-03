@@ -118,13 +118,13 @@ terraform destroy
 ## Open tasks
 
 * [x] ~~Ensure all nodes use Debian 11~~
-* [ ] Open port UDP 51820 for WireGuard (inbound and outbound)
+* [x] ~~Open port UDP 51820 for WireGuard (inbound and outbound)~~
 * [x] ~~Install WireGuard on all nodes ([docs](https://www.wireguard.com/install/))~~
-* [ ] Install K3s on all nodes ([docs](https://docs.k3s.io/quick-start))
+* [ ] Configure WireGuard network interface on all nodes ([docs](https://www.wireguard.com/quickstart/))
+* [ ] Install K3s on all nodes ([Conceptual Overview](https://www.wireguard.com/#conceptual-overview), [Quick Start](https://docs.k3s.io/quick-start))
 * [ ] Specify topology (annotating location and optionally region)
 * [ ] Deploy Kilo on all nodes
 
 ## Optional tasks
 
-* [ ] Open port TCP 6443 for K3s (if required)
 * [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation

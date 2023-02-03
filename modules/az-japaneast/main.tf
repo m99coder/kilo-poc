@@ -44,13 +44,26 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
   security_rule {
-    name                       = "WireGuard"
+    name                       = "WireGuardInbound"
     priority                   = 1002
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Udp"
-    source_port_range          = "*"
+    source_port_range          = "51820"
+    destination_port_range     = "51820"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "WireGuardOutbound"
+    priority                   = 1003
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Udp"
+    source_port_range          = "51820"
     destination_port_range     = "51820"
     source_address_prefix      = "*"
     destination_address_prefix = "*"

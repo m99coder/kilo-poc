@@ -31,6 +31,9 @@
 ## Wireguard
 
 * <https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-debian-11>
+* <https://www.procustodibus.com/blog/2020/12/wireguard-site-to-site-config/>
+* <https://www.wireguard.com/talks/talk-demo-screencast.mp4>
+* <https://www.reddit.com/r/WireGuard/comments/duz37t/wgconf_postup_and_postdown/>
 
 ## Multi-Cloud VPN
 
