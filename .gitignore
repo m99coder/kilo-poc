@@ -39,3 +39,6 @@ Footer
 
 # Credentials
 gcp.json
+
+# WireGuard Configuration
+wg0.*.conf

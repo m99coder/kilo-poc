@@ -1,6 +1,36 @@
 # WireGuard
 
-## Create keypairs
+## CIDRs
+
+* `aws-eu-central-1`: `10.0.0.1/24`
+* `aws-eu-west-1`: `10.0.0.2/24`
+* `aws-us-east-1`: `10.0.0.3/24`
+* `aws-us-west-2`: `10.0.0.4/24`
+* `az-japaneast`: `10.0.0.5/24`
+* `gcp-us-central1`: `10.0.0.6/24`
+
+## Installation
+
+```shell
+# elevate to root
+sudo su
+
+# configure system
+export PS1="\[\e[0;32m\][\u@\h \W]$\[\e[m\] "
+
+#locale -a
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+export LANGUAGE=C.UTF-8
+
+alias ll='ls -la --color=auto'
+
+# update system and install wireguard
+apt update
+apt install -y wireguard
+```
+
+## Configuration
 
 Create private and public keys on each peer.
 
@@ -9,28 +39,28 @@ wg genkey > private
 wg pubkey < private
 ```
 
-## Add network interface
+Save configuration as `/etc/wireguard/wg0.conf`.
 
-```shell
-ip link add wg0 type wireguard
-# use 10.0.0.2/24 and so on for the other peers to avoid routing issues
-ip addr add 10.0.0.1/24 dev wg0
-wg set wg0 private-key ./private
-ip link set wg0 up
+```ini
+[Interface]
+PrivateKey = <PRIVATE-KEY>
+Address = 10.0.0.1/32
+SaveConfig = true
+ListenPort = 51820
 
-# check setup and get local IP addresses of each peer (192.168.1.x/24)
-ip addr
+# The following is needed only if you have `ufw` installed
+#PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+#PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+[Peer]
+PublicKey = <PUBLIC-KEY>
+Endpoint = <PUBLIC-IP>:51820
+AllowedIPs = 10.0.0.2/32, 10.0.0.1/32
 ```
 
-## Add peers to WireGuard configuration
+Bring up network interface and test connection.
 
 ```shell
-# repeat this step for each peer with the adjusted CIDRs and local IP addresses
-wg set wg0 peer <PUBLIC-KEY> allowed-ips 10.0.0.2/32 endpoint 192.168.1.2:51820
-
-# check connection
+wg-quick up wg0
 ping 10.0.0.2
-
-# check status of VPN
-wg
 ```
