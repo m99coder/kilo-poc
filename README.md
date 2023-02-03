@@ -11,8 +11,8 @@ What’s possible with that?
 
 ## Setup
 
-* [WireGuard](WIREGUARD.md)
-* [K3s](K3S.md)
+* [WireGuard](docs/WIREGUARD.md)
+* [K3s](docs/K3S.md)
 
 ## Run
 
