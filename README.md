@@ -44,7 +44,7 @@ terraform destroy
 * [x] ~~Install K3s on all nodes ([Conceptual Overview](https://www.wireguard.com/#conceptual-overview), [Quick Start](https://docs.k3s.io/quick-start))~~
 * [x] ~~Specify topology (annotating location and optionally region)~~
 * [x] ~~Deploy Kilo on all nodes~~
-* [ ] Figure out how to join the Azure node
+* [x] ~~Figure out how to join the Azure node~~
 
 ## Optional tasks
 
