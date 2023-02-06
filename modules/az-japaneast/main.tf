@@ -8,8 +8,9 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "az-japaneast-virtual-network"
-  address_space       = ["10.0.0.0/16"]
+  name = "az-japaneast-virtual-network"
+  #address_space       = ["10.0.0.0/16"]
+  address_space       = ["172.16.0.0/12"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
@@ -18,7 +19,8 @@ resource "azurerm_subnet" "subnet" {
   name                 = "az-japaneast-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.0.1.0/24"]
+  #address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes = ["172.16.1.0/24"]
 }
 
 resource "azurerm_public_ip" "public_ip" {

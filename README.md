@@ -27,6 +27,7 @@ terraform plan
 terraform apply
 
 # show resources and details
+terraform output
 terraform state list
 terraform state show module.aws_us_east_1.aws_instance.node
 

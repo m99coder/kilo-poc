@@ -16,7 +16,15 @@
 ## Azure
 
 * <https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform>
+* <https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret>
 * <https://az-vm-image.info/>
+
+```shell
+az login
+az account list
+az account set --subscription="SUBSCRIPTION_ID"
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTION_ID"
+```
 
 ## Terraform
 

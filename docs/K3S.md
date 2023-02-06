@@ -51,3 +51,11 @@ kubectl annotate node/gcp-us-central1-node \
 # uninstall k3s
 k3s-agent-uninstall
 ```
+
+### Cgroup v2
+
+> Cgroup v1 and Hybrid v1/v2 are not supported; only pure Cgroup v2 is supported. If K3s fails to start due to missing cgroups when running rootless, it is likely that your node is in Hybrid mode, and the "missing" cgroups are still bound to a v1 controller.
+
+_[Source](https://docs.k3s.io/advanced#known-issues-with-rootless-mode)_
+
+For the Azure node, Cgroups v2 had to be enabled by modifying the `cmdline` for GRUB as described [here](https://sleeplessbeastie.eu/2021/09/10/how-to-enable-control-group-v2/).
