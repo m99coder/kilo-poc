@@ -37,8 +37,8 @@ Footer
 # Environment variables
 .envrc
 
-# Credentials
-gcp.json
+# GCP Credentials
+gcp*.json
 
 # WireGuard Configuration
 wg0.*.conf
