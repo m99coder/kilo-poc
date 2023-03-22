@@ -16,10 +16,23 @@ What’s possible with that?
 
 ## Run
 
+### SSH Key
+
 ```shell
 # create RSA key
 ssh-keygen -b 4096 -t rsa -f ~/.ssh/cloud-key
+```
 
+Copy the contents of the public key `~/.ssh/cloud-key.pub` into `.auto.tfvars` as `public_ssh_key` (see `.auto.tfvars.example`). Terraform will automatically pick up this file.
+
+You can also overwrite as follows
+
+* Using the CLI `-var` option: `terraform apply -var="public_ssh_key=..."`
+* Using an environment variable: `export TF_VAR_public_ssh_key="..."`
+
+### Infrastructure as Code
+
+```
 # init, plan, and apply infrastructure
 # use `-target=module.gcp_us_central1` to target specific modules
 terraform init
