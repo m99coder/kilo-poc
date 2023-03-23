@@ -3,7 +3,7 @@ export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
 
 # GCP
-# is using `gcp.json`
+export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/gcp.json"
 
 # Azure
 # credentials are given after creating the service principal

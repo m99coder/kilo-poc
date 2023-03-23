@@ -35,7 +35,6 @@ You can also overwrite as follows
 ```shell
 # init, plan, and apply infrastructure
 # use `-target=module.gcp_us_central1` to target specific modules
-# use `export GOOGLE_APPLICATION_CREDENTIALS="./gcp.json"` to specify GCP credentials file
 terraform init
 terraform plan
 terraform apply
