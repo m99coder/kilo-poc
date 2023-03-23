@@ -27,8 +27,8 @@ kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kil
 # get join token
 cat /var/lib/rancher/k3s/server/node-token
 
-# uninstall k3s
-k3s-uninstall
+# uninstall k3s with `/usr/local/bin/k3s-uninstall.sh`
+k3s-uninstall.sh
 ```
 
 ## Secondary Nodes
@@ -48,8 +48,8 @@ kubectl annotate node/gcp-us-central1-node \
   kilo.squat.ai/region="us-central1"
 #kubectl describe $NODE_NAME | grep kilo
 
-# uninstall k3s
-k3s-agent-uninstall
+# uninstall k3s with `/usr/local/bin/k3s-agent-uninstall.sh`
+k3s-agent-uninstall.sh
 ```
 
 ### Cgroup v2
