@@ -1,3 +1,7 @@
 variable "public_ssh_key" {
-  type    = string
+  type = string
+}
+
+variable "project" {
+  type = string
 }

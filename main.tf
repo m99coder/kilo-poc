@@ -44,4 +44,5 @@ module "az_japaneast" {
 module "gcp_us_central1" {
   source         = "./modules/gcp-us-central1"
   public_ssh_key = var.public_ssh_key
+  project        = var.project
 }

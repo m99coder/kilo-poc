@@ -1,7 +1,5 @@
 provider "google" {
-  credentials = file("${path.module}/../../gcp.json")
-
-  project = "kilo-poc"
+  project = "${var.project}"
   region  = "us-central1"
   zone    = "us-central1-a"
 }
