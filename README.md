@@ -32,7 +32,7 @@ You can also overwrite as follows
 
 ### Infrastructure as Code
 
-```
+```shell
 # init, plan, and apply infrastructure
 # use `-target=module.gcp_us_central1` to target specific modules
 terraform init
@@ -58,6 +58,7 @@ terraform destroy
 * [x] ~~Specify topology (annotating location and optionally region)~~
 * [x] ~~Deploy Kilo on all nodes~~
 * [x] ~~Figure out how to join the Azure node~~
+* [ ] Deploy [traefik/whoami](https://github.com/traefik/whoami) services to test connectivity
 
 ## Optional tasks
 
