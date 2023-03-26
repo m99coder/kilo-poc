@@ -595,7 +595,9 @@ gcloud projects add-iam-policy-binding kilo-poc --member=serviceAccount:tf-servi
 brew install azure-cli
 
 # authenticate
+# this command provides the subscription ID as `id`
 az login
+az account list
 az account set --subscription "9b6ad402-a6ec-48b9-b418-879aec8104f3"
 
 # create Active Directory service principal
