@@ -35,7 +35,7 @@ resource "google_compute_instance" "node" {
   tags         = ["allow-ssh-wireguard"]
 
   metadata = {
-    ssh-keys = "tf-serviceaccount:${var.public_ssh_key}"
+    ssh-keys = join("\n", [for key in var.public_ssh_keys : "tf-serviceaccount:${key}"])
   }
 
   boot_disk {

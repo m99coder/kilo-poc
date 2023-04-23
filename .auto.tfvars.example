@@ -1,2 +1,2 @@
-public_ssh_key = ""
+public_ssh_keys = [""]
 project = "kilo-poc"

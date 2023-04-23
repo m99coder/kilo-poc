@@ -26,8 +26,9 @@ resource "aws_security_group" "ssh_wireguard" {
 }
 
 resource "aws_key_pair" "aws_key" {
-  key_name   = "aws-key"
-  public_key = var.public_ssh_key
+  for_each   = toset(var.public_ssh_keys)
+  key_name   = "aws-key-${index(var.public_ssh_keys, each.key)}"
+  public_key = each.value
 }
 
 resource "aws_instance" "node" {
@@ -35,7 +36,7 @@ resource "aws_instance" "node" {
   ami                         = "ami-0c75b861029de4030" # Debian 11
   associate_public_ip_address = true
   instance_type               = "t2.micro"
-  key_name                    = "aws-key"
+  key_name                    = "aws-key-0"
   vpc_security_group_ids      = [aws_security_group.ssh_wireguard.id]
 
   tags = {

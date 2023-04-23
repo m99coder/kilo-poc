@@ -90,6 +90,14 @@ resource "azurerm_network_interface_security_group_association" "nic_nsg_associa
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
+resource "azurerm_ssh_public_key" "ssh_key" {
+  for_each = toset(var.public_ssh_keys)
+  name                = "az-japaneast-key-${index(var.public_ssh_keys, each.key)}"
+  resource_group_name = "az-japaneast-resource-group"
+  location            = "Japan East"
+  public_key          = each.value
+}
+
 resource "azurerm_linux_virtual_machine" "node" {
   name                  = "az-japaneast-node"
   location              = azurerm_resource_group.rg.location
@@ -113,9 +121,8 @@ resource "azurerm_linux_virtual_machine" "node" {
   computer_name                   = "az-japaneast-node"
   admin_username                  = "azureuser"
   disable_password_authentication = true
-
   admin_ssh_key {
     username   = "azureuser"
-    public_key = var.public_ssh_key
+    public_key = var.public_ssh_keys[0]
   }
 }

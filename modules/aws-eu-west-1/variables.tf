@@ -1,4 +1,4 @@
-variable "public_ssh_key" {
-  type = string
+variable "public_ssh_keys" {
+  type = list(string)
 }
 
