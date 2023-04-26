@@ -59,3 +59,26 @@ k3s-agent-uninstall.sh
 _[Source](https://docs.k3s.io/advanced#known-issues-with-rootless-mode)_
 
 For the Azure node, Cgroups v2 had to be enabled by modifying the `cmdline` for GRUB as described [here](https://sleeplessbeastie.eu/2021/09/10/how-to-enable-control-group-v2/).
+
+
+## Blog follow
+
+### Server installation
+```shell
+$PUBLIC_IP=3.73.159.250
+curl -sfL https://get.k3s.io | sh -s - server --flannel-backend none --node-ip=3.73.159.250 --node-external-ip=3.73.159.250
+
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kilo-k3s.yaml
+
+```
+
+### Node install
+
+```shell
+TOKEN=XXX
+K8S_API=https://3.73.159.250:6443
+
+curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN --flannel-backend none
+
+```
