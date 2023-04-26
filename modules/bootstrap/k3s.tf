@@ -44,6 +44,7 @@ data "template_file" "k3s_node" {
 
   vars = {
     TOKEN = var.k3s_token
+    PUBLIC_IP = var.instance_public_ip
     LEADER_ENDPOINT = var.k3s_leader_endpoint
     LOCATION = var.k3s_topology_location
   }
