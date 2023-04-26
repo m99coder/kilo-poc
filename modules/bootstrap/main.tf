@@ -4,6 +4,7 @@ data "template_file" "this" {
 resource "null_resource" "this" {
   triggers = {
     file_changed = md5(data.template_file.this.rendered)
+    foo = boo
   }
 
   connection {
