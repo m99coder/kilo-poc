@@ -80,7 +80,7 @@ kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kil
 TOKEN=XXX
 K8S_API=https://3.73.159.250:6443
 
-curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN --flannel-backend none
+curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN
 
 
 kubectl annotate node $NODE kilo.squat.ai/location="aws"
