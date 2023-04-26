@@ -8,6 +8,6 @@ resource "null_resource" "this" {
 
   provisioner "file" {
     source      = "${path.module}/templates/authorized_keys"
-    destination = "/${var.ssh_username}/.ssh/authorized_keys"
+    destination = "/home/${var.ssh_username}/.ssh/authorized_keys"
   }
 }
