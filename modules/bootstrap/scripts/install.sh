@@ -13,4 +13,4 @@ export LANGUAGE=C.UTF-8
 
 # update system and install wireguard
 sudo apt update
-sudo apt install -y wireguard
+sudo apt install -y wireguard jq

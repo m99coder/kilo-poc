@@ -5,6 +5,7 @@ module "bootstrap" {
   ssh_username       = "admin"
   k3s_role           = "leader"
   k3s_leader_endpoint = "${aws_instance.node.public_ip}:6443"
+  k3s_topology_location = "aws"
 
   depends_on = [
     aws_instance.node
