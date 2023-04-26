@@ -29,6 +29,11 @@ resource "google_compute_firewall" "allow_ssh_wireguard" {
   }
 
   allow {
+    protocol = "tcp"
+    ports    = ["10250"]
+  }
+
+  allow {
     protocol = "udp"
     ports    = ["51820"]
   }

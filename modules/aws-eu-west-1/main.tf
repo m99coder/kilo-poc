@@ -19,6 +19,13 @@ resource "aws_security_group" "ssh_wireguard" {
 
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 10250
+    protocol    = "tcp"
+    to_port     = 10250
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
     from_port   = 51820
     protocol    = "udp"
     to_port     = 51820
