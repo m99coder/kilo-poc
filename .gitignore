@@ -42,3 +42,6 @@ gcp*.json
 
 # WireGuard Configuration
 wg0.*.conf
+
+# Kubernetes Configuration
+kubeconfig.yaml

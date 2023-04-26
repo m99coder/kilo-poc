@@ -60,9 +60,11 @@ _[Source](https://docs.k3s.io/advanced#known-issues-with-rootless-mode)_
 
 For the Azure node, Cgroups v2 had to be enabled by modifying the `cmdline` for GRUB as described [here](https://sleeplessbeastie.eu/2021/09/10/how-to-enable-control-group-v2/).
 
-## Blog follow
+## Following a blog post
 
-### Server installation
+> <https://jbhannah.net/articles/k3s-wireguard-kilo>
+
+### Leader node
 
 ```shell
 $PUBLIC_IP=3.73.159.250
@@ -72,11 +74,18 @@ kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/crd
 kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kilo-k3s.yaml
 ```
 
-### Node install
+### Joining node
 
 ```shell
 TOKEN=XXX
 K8S_API=https://3.73.159.250:6443
 
 curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN
+```
+
+### Connect from local
+
+```shell
+export KUBECONFIG=./kubeconfig.yaml
+kubectl get nodes
 ```
