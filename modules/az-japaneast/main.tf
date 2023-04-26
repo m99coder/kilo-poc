@@ -48,8 +48,32 @@ resource "azurerm_network_security_group" "nsg" {
   }
 
   security_rule {
-    name                       = "K3s"
+    name                       = "HTTP"
     priority                   = 1002
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "HTTPS"
+    priority                   = 1003
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "K3s"
+    priority                   = 1004
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -61,7 +85,7 @@ resource "azurerm_network_security_group" "nsg" {
 
   security_rule {
     name                       = "K3sMetricsServer"
-    priority                   = 1003
+    priority                   = 1005
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -73,7 +97,7 @@ resource "azurerm_network_security_group" "nsg" {
 
   security_rule {
     name                       = "WireGuardInbound"
-    priority                   = 1004
+    priority                   = 1006
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Udp"
@@ -85,7 +109,7 @@ resource "azurerm_network_security_group" "nsg" {
 
   security_rule {
     name                       = "WireGuardOutbound"
-    priority                   = 1005
+    priority                   = 1007
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "Udp"

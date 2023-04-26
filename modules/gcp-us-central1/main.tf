@@ -25,6 +25,16 @@ resource "google_compute_firewall" "allow_ssh_wireguard" {
 
   allow {
     protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  allow {
+    protocol = "tcp"
     ports    = ["6443"]
   }
 
