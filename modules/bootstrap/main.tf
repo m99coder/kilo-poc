@@ -15,7 +15,7 @@ resource "null_resource" "this" {
 
   provisioner "file" {
     source      = "${path.module}/script"
-    destination = "/home/${var.ssh_username}/script"
+    destination = "/home/${var.ssh_username}"
   }
 
   provisioner "remote-exec" {
