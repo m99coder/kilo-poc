@@ -19,3 +19,9 @@ variable "ssh_username" {
   default     = "root"
   type        = string
 }
+
+variable "k3s_role" {
+  description = "K3s role"
+  default     = "node"
+  type        = string
+}
