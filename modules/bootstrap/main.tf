@@ -14,14 +14,14 @@ resource "null_resource" "this" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/scripts"
-    destination = "/home/${var.ssh_username}/scripts"
+    source      = "${path.module}/script"
+    destination = "/home/${var.ssh_username}/script"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/${var.ssh_username}/scripts",
-      "/home/${var.ssh_username}/scripts/install.sh"
+      "chmod +x /home/${var.ssh_username}/script",
+      "/home/${var.ssh_username}/script/install.sh"
     ]
   }
 }
