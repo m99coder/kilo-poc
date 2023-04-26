@@ -1,7 +1,7 @@
 data "template_file" "k3s_leader" {
   count = var.k3s_role == "leader" ? 1 : 0
 
-  template = file("${path.module}/scripts/k3s-leader.sh")
+  template = file("${path.module}/scripts/k3s-leader.tpl")
 
   vars = {
     PUBLIC_IP = var.instance_public_ip
@@ -40,7 +40,7 @@ resource "null_resource" "k3s_leader_resource" {
 data "template_file" "k3s_node" {
   count = var.k3s_role == "node" ? 1 : 0
 
-  template = file("${path.module}/scripts/k3s-node.sh")
+  template = file("${path.module}/scripts/k3s-node.tpl")
 
   vars = {
     TOKEN = var.k3s_token
