@@ -1,4 +1,11 @@
+data "template_file" "this" {
+  template = file("${path.module}/templates/authorized_keys")
+}
 resource "null_resource" "this" {
+  triggers = {
+    file_changed = md5(data.template_file.this.rendered)
+  }
+
   connection {
     host  = var.instance_public_ip
     user  = var.ssh_username
