@@ -24,7 +24,7 @@ resource "null_resource" "k3s_leader_resource" {
   }
 
   provisioner "file" {
-    content = data.template_file.k3s_leader.rendered
+    content = data.template_file.k3s_leader[0].rendered
     destination = "/home/${var.ssh_username}/k3s.sh"
   }
 
@@ -36,7 +36,6 @@ resource "null_resource" "k3s_leader_resource" {
   }
 }
 
-
 data "template_file" "k3s_node" {
   count = var.k3s_role == "node" ? 1 : 0
 
@@ -47,6 +46,7 @@ data "template_file" "k3s_node" {
     LEADER_ENDPOINT = var.k3s_leader_endpoint
   }
 }
+
 resource "null_resource" "k3s_node_resource" {
   count = var.k3s_role == "node" ? 1 : 0
 
@@ -62,7 +62,7 @@ resource "null_resource" "k3s_node_resource" {
   }
 
   provisioner "file" {
-    content = data.template_file.k3s_node.rendered
+    content = data.template_file.k3s_node[0].rendered
     destination = "/home/${var.ssh_username}/k3s.sh"
   }
 
