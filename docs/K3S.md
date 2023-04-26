@@ -80,12 +80,12 @@ kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kil
 TOKEN=XXX
 K8S_API=https://3.73.159.250:6443
 
-curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN
-```
+curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN --flannel-backend none
 
-### Connect from local
 
-```shell
-export KUBECONFIG=./kubeconfig.yaml
-kubectl get nodes
+kubectl annotate node $NODE kilo.squat.ai/location="aws"
+kubectl annotate node $NODE kilo.squat.ai/force-endpoint="3.73.159.250:51820"
+
+kubectl annotate node $NODE kilo.squat.ai/location="azure"
+kubectl annotate node $NODE kilo.squat.ai/force-endpoint="20.210.233.159:51820"
 ```
