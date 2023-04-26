@@ -14,7 +14,7 @@ resource "null_resource" "this" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/script"
+    source      = "${path.module}/scripts"
     destination = "/home/${var.ssh_username}"
   }
 
