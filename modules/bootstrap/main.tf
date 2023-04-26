@@ -20,7 +20,7 @@ resource "null_resource" "this" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/${var.ssh_username}/script",
+      "chmod +x -R /home/${var.ssh_username}/script",
       "/home/${var.ssh_username}/script/install.sh"
     ]
   }
