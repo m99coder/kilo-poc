@@ -89,7 +89,7 @@ module "gcp_eu_central1" {
   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
   providers = {
-    google = google.gcp-eu-central-1
+    google = google.gcp-eu-central1
   }
 
   depends_on = [
@@ -105,7 +105,7 @@ module "gcp_us_central1" {
   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
   providers = {
-    google = google.gcp-us-central-1
+    google = google.gcp-us-central1
   }
 
   depends_on = [
