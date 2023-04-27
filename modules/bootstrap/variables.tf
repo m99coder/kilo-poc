@@ -33,7 +33,7 @@ variable "k3s_token" {
 }
 
 variable "k3s_leader_endpoint" {
-  description = "K3s Leader endpoint"
+  description = "K3s leader endpoint"
   type        = string
 }
 

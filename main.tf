@@ -24,16 +24,34 @@ module "aws_eu_central_1" {
 # module "aws_eu_west_1" {
 #   source         = "./modules/aws-eu-west-1"
 #   public_ssh_key = var.public_ssh_key
+
+#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+#   depends_on = [
+#     module.aws_eu_central_1
+#   ]
 # }
 
 # module "aws_us_east_1" {
 #   source         = "./modules/aws-us-east-1"
 #   public_ssh_key = var.public_ssh_key
+
+#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+#   depends_on = [
+#     module.aws_eu_central_1
+#   ]
 # }
 
 # module "aws_us_west_2" {
 #   source         = "./modules/aws-us-west-2"
 #   public_ssh_key = var.public_ssh_key
+
+#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+#   depends_on = [
+#     module.aws_eu_central_1
+#   ]
 # }
 
 module "az_japaneast" {
@@ -47,8 +65,14 @@ module "az_japaneast" {
   ]
 }
 
-# module "gcp_us_central1" {
-#   source         = "./modules/gcp-us-central1"
-#   public_ssh_key = var.public_ssh_key
-#   project        = var.project
-# }
+module "gcp_us_central1" {
+  source         = "./modules/gcp-us-central1"
+  public_ssh_key = var.public_ssh_key
+  project        = var.project
+
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}

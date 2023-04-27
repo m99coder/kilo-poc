@@ -1,11 +1,5 @@
-provider "google" {
-  project = var.project
-  region  = "us-central1"
-  zone    = "us-central1-a"
-}
-
 resource "google_compute_network" "kilo" {
-  name = "kilo-2"
+  name = "kilo"
 }
 
 resource "google_compute_address" "static_ip" {
