@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.64.0"
+    }
+  }
+}
+
 resource "aws_security_group" "ssh_wireguard" {
   ingress {
     cidr_blocks = ["0.0.0.0/0"]

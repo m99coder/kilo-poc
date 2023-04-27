@@ -21,42 +21,54 @@ module "aws_eu_central_1" {
   public_ssh_key = var.public_ssh_key
 
   providers = {
-    aws = aws.aws-euc1
+    aws = aws.aws-eu-central-1
   }
 }
 
-# module "aws_eu_west_1" {
-#   source         = "./modules/aws-eu-west-1"
-#   public_ssh_key = var.public_ssh_key
+module "aws_eu_west_1" {
+  source         = "./modules/aws-eu-west-1"
+  public_ssh_key = var.public_ssh_key
 
-#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
-#   depends_on = [
-#     module.aws_eu_central_1
-#   ]
-# }
+  providers = {
+    aws = aws.aws-eu-west-1
+  }
 
-# module "aws_us_east_1" {
-#   source         = "./modules/aws-us-east-1"
-#   public_ssh_key = var.public_ssh_key
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}
 
-#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+module "aws_us_east_1" {
+  source         = "./modules/aws-us-east-1"
+  public_ssh_key = var.public_ssh_key
 
-#   depends_on = [
-#     module.aws_eu_central_1
-#   ]
-# }
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
-# module "aws_us_west_2" {
-#   source         = "./modules/aws-us-west-2"
-#   public_ssh_key = var.public_ssh_key
+  providers = {
+    aws = aws.aws-us-east-1
+  }
 
-#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}
 
-#   depends_on = [
-#     module.aws_eu_central_1
-#   ]
-# }
+module "aws_us_west_2" {
+  source         = "./modules/aws-us-west-2"
+  public_ssh_key = var.public_ssh_key
+
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+  providers = {
+    aws = aws.aws-us-west-2
+  }
+
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}
 
 module "az_japaneast" {
   source         = "./modules/az-japaneast"
@@ -69,12 +81,32 @@ module "az_japaneast" {
   ]
 }
 
+module "gcp_eu_central1" {
+  source         = "./modules/gcp-us-central1"
+  public_ssh_key = var.public_ssh_key
+  project        = var.project
+
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+  providers = {
+    google = google.gcp-eu-central-1
+  }
+
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}
+
 module "gcp_us_central1" {
   source         = "./modules/gcp-us-central1"
   public_ssh_key = var.public_ssh_key
   project        = var.project
 
   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+  providers = {
+    google = google.gcp-us-central-1
+  }
 
   depends_on = [
     module.aws_eu_central_1
