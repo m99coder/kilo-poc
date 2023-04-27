@@ -81,21 +81,21 @@ module "az_japaneast" {
   ]
 }
 
-module "gcp_eu_central1" {
-  source         = "./modules/gcp-us-central1"
-  public_ssh_key = var.public_ssh_key
-  project        = var.project
+# module "gcp_eu_central1" {
+#   source         = "./modules/gcp-us-central1"
+#   public_ssh_key = var.public_ssh_key
+#   project        = var.project
 
-  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+#   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
-  providers = {
-    google = google.gcp-eu-central1
-  }
+#   providers = {
+#     google = google.gcp-eu-central1
+#   }
 
-  depends_on = [
-    module.aws_eu_central_1
-  ]
-}
+#   depends_on = [
+#     module.aws_eu_central_1
+#   ]
+# }
 
 module "gcp_us_central1" {
   source         = "./modules/gcp-us-central1"

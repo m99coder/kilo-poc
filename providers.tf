@@ -22,12 +22,12 @@ provider "azurerm" {
   features {}
 }
 
-provider "google" {
-  alias   = "gcp-eu-central1"
-  project = var.project
-  region  = "eu-central1"
-  zone    = "eu-central1-a"
-}
+# provider "google" {
+#   alias   = "gcp-eu-central1"
+#   project = var.project
+#   region  = "eu-central1"
+#   zone    = "eu-central1-a"
+# }
 
 provider "google" {
   alias   = "gcp-us-central1"

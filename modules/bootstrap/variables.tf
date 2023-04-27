@@ -28,7 +28,7 @@ variable "k3s_role" {
 
 variable "k3s_token" {
   description = "K3s token"
-  default     = "K106bb465d4b6353b3bab11673467573ff345e2e96981358c04c003ab40e1c2319e::server:f5b41e808e6858ade0265b43fb0dd119"
+  default     = "K108e9c3cf36fbacd0b500a6467d0c6c450580721b5a8c61ffbb1b1b6cacd658baa::server:f5b41e808e6858ade0265b43fb0dd119"
   type        = string
 }
 
