@@ -37,11 +37,14 @@ Footer
 # Environment variables
 .envrc
 
-# GCP Credentials
+# GCP credentials
 gcp*.json
 
-# WireGuard Configuration
+# WireGuard config
 wg0.*.conf
 
-# Kubernetes Configuration
+# Kubernetes config
 kubeconfig.yaml
+
+# Custom ignores
+docs/HACKTAG.md
