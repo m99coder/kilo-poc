@@ -6,6 +6,7 @@ module "bootstrap" {
 
   k3s_leader_endpoint   = "https://${var.k3s_leader_endpoint}:6443"
   k3s_topology_location = "gcp"
+  region                = "eu-central-1"
 
   depends_on = [
     google_compute_address.static_ip,
