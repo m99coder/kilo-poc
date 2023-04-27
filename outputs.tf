@@ -18,6 +18,10 @@ output "az_japaneast_ssh_connect" {
   value = "ssh -i ~/.ssh/cloud-key azureuser@${module.az_japaneast.public_ip}"
 }
 
+output "az_norwayeast_ssh_connect" {
+  value = "ssh -i ~/.ssh/cloud-key azureuser@${module.az_norwayeast.public_ip}"
+}
+
 # output "gcp_eu_central1_ssh_connect" {
 #   value = "ssh -i ~/.ssh/cloud-key tf-serviceaccount@${module.gcp_eu_central1.public_ip}"
 # }

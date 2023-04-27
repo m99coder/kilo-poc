@@ -81,6 +81,17 @@ module "az_japaneast" {
   ]
 }
 
+module "az_norwayeast" {
+  source         = "./modules/az-norwayeast"
+  public_ssh_key = var.public_ssh_key
+
+  k3s_leader_endpoint = module.aws_eu_central_1.public_ip
+
+  depends_on = [
+    module.aws_eu_central_1
+  ]
+}
+
 # module "gcp_eu_central1" {
 #   source         = "./modules/gcp-us-central1"
 #   public_ssh_key = var.public_ssh_key
