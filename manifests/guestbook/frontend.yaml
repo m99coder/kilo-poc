@@ -1,0 +1,128 @@
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-global
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+      region: non-eu
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+        region: non-eu
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: region
+                    operator: In
+                    values:
+                      - us-east-1
+                      - us-central-1
+                      - us-west-2
+                      - japan-east
+      containers:
+        - name: php-redis
+          image: gcr.io/google_samples/gb-frontend:v5
+          env:
+            - name: GET_HOSTS_FROM
+              value: "dns"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 80
+---
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-global
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  #type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+    - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
+---
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-eu
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+      region: eu
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+        region: eu
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: region
+                    operator: In
+                    values:
+                      - eu-west-1
+                      - eu-central-1
+                      - norway-east
+      containers:
+        - name: php-redis
+          image: gcr.io/google_samples/gb-frontend:v5
+          env:
+            - name: GET_HOSTS_FROM
+              value: "dns"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 80
+---
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-eu
+  labels:
+    app: guestbook
+    tier: frontend
+    region: eu
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  #type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+    - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
+    region: eu

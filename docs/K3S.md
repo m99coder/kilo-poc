@@ -59,3 +59,33 @@ k3s-agent-uninstall.sh
 _[Source](https://docs.k3s.io/advanced#known-issues-with-rootless-mode)_
 
 For the Azure node, Cgroups v2 had to be enabled by modifying the `cmdline` for GRUB as described [here](https://sleeplessbeastie.eu/2021/09/10/how-to-enable-control-group-v2/).
+
+## Following a blog post
+
+> <https://jbhannah.net/articles/k3s-wireguard-kilo>
+
+### Leader node
+
+```shell
+$PUBLIC_IP=3.73.159.250
+curl -sfL https://get.k3s.io | sh -s - server --flannel-backend none --node-ip=$PUBLIC_IP --node-external-ip=$PUBLIC_IP
+
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/squat/kilo/main/manifests/kilo-k3s.yaml
+```
+
+### Joining node
+
+```shell
+TOKEN=XXX
+K8S_API=https://3.73.159.250:6443
+
+curl -sfL https://get.k3s.io | K3S_URL=$K8S_API sh -s - agent --token $TOKEN
+
+
+kubectl annotate node $NODE kilo.squat.ai/location="aws"
+kubectl annotate node $NODE kilo.squat.ai/force-endpoint="3.73.159.250:51820"
+
+kubectl annotate node $NODE kilo.squat.ai/location="azure"
+kubectl annotate node $NODE kilo.squat.ai/force-endpoint="20.210.233.159:51820"
+```

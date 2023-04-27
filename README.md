@@ -63,3 +63,8 @@ terraform destroy
 ## Optional tasks
 
 * [ ] Look into [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) for cloud instance initialisation
+
+## Manual tasks
+
+* [ ] Enable cgroups v2 on the Azure node
+* [ ] Annotating `location` and `force-endpoint` in order to make kilo aware of the topology

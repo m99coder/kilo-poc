@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echoserver-node
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echoserver-node
+  template:
+    metadata:
+      labels:
+        app: echoserver-node
+    spec:
+      containers:
+        - image: ealen/echo-server
+          imagePullPolicy: IfNotPresent
+          name: echoserver-node
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: "80"
+      nodeSelector:
+        kubernetes.io/hostname: "ip-172-31-90-114"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver-node
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: echoserver-node
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: hacktag-node.omegion.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echoserver-node
+                port:
+                  number: 80

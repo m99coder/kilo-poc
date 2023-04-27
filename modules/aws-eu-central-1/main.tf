@@ -1,5 +1,10 @@
-provider "aws" {
-  region = "eu-central-1"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.64.0"
+    }
+  }
 }
 
 resource "aws_security_group" "ssh_wireguard" {
@@ -8,6 +13,34 @@ resource "aws_security_group" "ssh_wireguard" {
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 80
+    protocol    = "tcp"
+    to_port     = 80
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 443
+    protocol    = "tcp"
+    to_port     = 443
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 6443
+    protocol    = "tcp"
+    to_port     = 6443
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 10250
+    protocol    = "tcp"
+    to_port     = 10250
   }
 
   ingress {

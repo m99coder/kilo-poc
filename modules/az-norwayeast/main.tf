@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "az-japaneast-resource-group"
-  location = "japaneast"
+  name     = "az-norwayeast-resource-group"
+  location = "norwayeast"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name = "az-japaneast-virtual-network"
+  name = "az-norwayeast-virtual-network"
   #address_space       = ["10.0.0.0/16"]
   address_space       = ["172.16.0.0/12"]
   location            = azurerm_resource_group.rg.location
@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "az-japaneast-subnet"
+  name                 = "az-norwayeast-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   #address_prefixes     = ["10.0.1.0/24"]
@@ -20,14 +20,14 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_public_ip" "public_ip" {
-  name                = "az-japaneast-public-ip"
+  name                = "az-norwayeast-public-ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  name                = "az-japaneast-network-security-group"
+  name                = "az-norwayeast-network-security-group"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -117,7 +117,7 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "az-japaneast-network-interface"
+  name                = "az-norwayeast-network-interface"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -135,14 +135,14 @@ resource "azurerm_network_interface_security_group_association" "nic_nsg_associa
 }
 
 resource "azurerm_linux_virtual_machine" "node" {
-  name                  = "az-japaneast-node"
+  name                  = "az-norwayeast-node"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.nic.id]
   size                  = "Standard_B1s"
 
   os_disk {
-    name                 = "az-japaneast-os-disk"
+    name                 = "az-norwayeast-os-disk"
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
@@ -154,7 +154,7 @@ resource "azurerm_linux_virtual_machine" "node" {
     version   = "0.20221219.1234"
   }
 
-  computer_name                   = "az-japaneast-node"
+  computer_name                   = "az-norwayeast-node"
   admin_username                  = "azureuser"
   disable_password_authentication = true
 
