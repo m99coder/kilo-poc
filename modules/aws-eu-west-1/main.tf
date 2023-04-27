@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "eu-west-1"
-}
-
 resource "aws_security_group" "ssh_wireguard" {
   ingress {
     cidr_blocks = ["0.0.0.0/0"]

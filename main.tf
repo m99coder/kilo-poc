@@ -19,6 +19,10 @@ terraform {
 module "aws_eu_central_1" {
   source         = "./modules/aws-eu-central-1"
   public_ssh_key = var.public_ssh_key
+
+  providers = {
+    aws = aws.aws-euc1
+  }
 }
 
 # module "aws_eu_west_1" {
