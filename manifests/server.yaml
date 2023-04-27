@@ -23,7 +23,7 @@ spec:
             - name: PORT
               value: "80"
       nodeSelector:
-        kubernetes.io/hostname: "ip-172-31-34-147"
+        kubernetes.io/hostname: "az-japaneast-node"
 ---
 apiVersion: v1
 kind: Service
