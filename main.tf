@@ -39,6 +39,7 @@ module "aws_eu_central_1" {
 module "az_japaneast" {
   source         = "./modules/az-japaneast"
   public_ssh_key = var.public_ssh_key
+
   k3s_leader_endpoint = module.aws_eu_central_1.public_ip
 
   depends_on = [

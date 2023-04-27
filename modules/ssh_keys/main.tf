@@ -9,7 +9,7 @@ resource "null_resource" "this" {
   connection {
     host  = var.instance_public_ip
     user  = var.ssh_username
-    port = var.ssh_port
+    port  = var.ssh_port
     agent = true
   }
 

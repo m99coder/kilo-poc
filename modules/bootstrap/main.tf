@@ -1,6 +1,7 @@
 data "template_file" "this" {
   template = file("${path.module}/scripts/install.sh")
 }
+
 resource "null_resource" "this" {
   triggers = {
     file_changed = md5(data.template_file.this.rendered)

@@ -5,8 +5,8 @@ data "template_file" "k3s_leader" {
 
   vars = {
     PUBLIC_IP = var.instance_public_ip
-    TOKEN = var.k3s_token
-    LOCATION = var.k3s_topology_location
+    TOKEN     = var.k3s_token
+    LOCATION  = var.k3s_topology_location
   }
 }
 
@@ -25,7 +25,7 @@ resource "null_resource" "k3s_leader_resource" {
   }
 
   provisioner "file" {
-    content = data.template_file.k3s_leader[0].rendered
+    content     = data.template_file.k3s_leader[0].rendered
     destination = "/home/${var.ssh_username}/k3s.sh"
   }
 
@@ -43,10 +43,10 @@ data "template_file" "k3s_node" {
   template = file("${path.module}/scripts/k3s-node.tpl")
 
   vars = {
-    TOKEN = var.k3s_token
-    PUBLIC_IP = var.instance_public_ip
+    TOKEN           = var.k3s_token
+    PUBLIC_IP       = var.instance_public_ip
     LEADER_ENDPOINT = var.k3s_leader_endpoint
-    LOCATION = var.k3s_topology_location
+    LOCATION        = var.k3s_topology_location
   }
 }
 
@@ -65,7 +65,7 @@ resource "null_resource" "k3s_node_resource" {
   }
 
   provisioner "file" {
-    content = data.template_file.k3s_node[0].rendered
+    content     = data.template_file.k3s_node[0].rendered
     destination = "/home/${var.ssh_username}/k3s.sh"
   }
 

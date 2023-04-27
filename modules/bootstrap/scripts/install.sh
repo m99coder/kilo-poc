@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Hello Team Awesome!"
-
 # configure system
 export PS1="\[\e[0;32m\][\u@\h \W]$\[\e[m\] "
 
