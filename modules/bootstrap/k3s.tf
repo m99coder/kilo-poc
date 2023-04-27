@@ -7,6 +7,7 @@ data "template_file" "k3s_leader" {
     PUBLIC_IP = var.instance_public_ip
     TOKEN     = var.k3s_token
     LOCATION  = var.k3s_topology_location
+    REGION  = var.region
   }
 }
 
@@ -47,6 +48,7 @@ data "template_file" "k3s_node" {
     PUBLIC_IP       = var.instance_public_ip
     LEADER_ENDPOINT = var.k3s_leader_endpoint
     LOCATION        = var.k3s_topology_location
+    REGION  = var.region
   }
 }
 

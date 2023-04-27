@@ -41,3 +41,8 @@ variable "k3s_topology_location" {
   description = "K3s topology location"
   type        = string
 }
+
+variable "region" {
+  description = "Node region"
+  type        = string
+}
